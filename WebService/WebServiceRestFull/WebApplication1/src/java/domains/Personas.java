@@ -98,12 +98,7 @@ public class Personas {
         return menssage;
 
     }
-
-    
-    
-    
  
-		 
     @GET
     @Path("insertar")
     public String insertar(@QueryParam("nom") String nom, @QueryParam("ape") String ape) {
