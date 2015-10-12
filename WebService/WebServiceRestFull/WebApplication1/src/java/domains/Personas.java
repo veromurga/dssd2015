@@ -43,7 +43,7 @@ public class Personas {
         }
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/datos",
-                    "root", "root");
+                    "root", "");
 
             PreparedStatement psSelectConClave = con
                     .prepareStatement("select * from persona where nombre=?");
@@ -60,7 +60,7 @@ public class Personas {
 
             Logger.getLogger(Personas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "{persona:Jorge}";
+        return menssage;
 
     }
 
@@ -79,7 +79,7 @@ public class Personas {
         }
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/datos",
-                    "root", "root");
+                    "root", "");
 
             Statement query = con.createStatement();
             ResultSet rest = query.executeQuery("SELECT * FROM persona");
@@ -119,7 +119,7 @@ public class Personas {
         }
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/datos",
-                    "root", "root");
+                    "root", "");
 
             String query = "insert into persona (nombre,apellido) values (?,?)";
 
@@ -154,7 +154,7 @@ public class Personas {
         }
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/datos",
-                    "root", "root");
+                    "root", "");
 
             String query = "delete from persona where nombre = ?";
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -188,7 +188,7 @@ public class Personas {
         }
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost/datos",
-                    "root", "root");
+                    "root", "");
 
             // create the java mysql update preparedstatement
             String query = "update persona set apellido = ? where nombre = ?";
