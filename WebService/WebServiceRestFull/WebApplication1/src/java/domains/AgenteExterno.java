@@ -46,12 +46,14 @@ public class AgenteExterno {
 
     @GET
     @Path("obtenerRevistas")
+    
     public String listar(@QueryParam("nom") String nom) {
 
         Connection con = null;
         Statement stat = null;
 
         String menssage = "";
+        
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {

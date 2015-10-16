@@ -35,11 +35,17 @@ import javax.ws.rs.QueryParam;
  */
 @Path("investigador")
 public class Investigador {
+    
+    public String user="root";
+    public String pass="";
+    public String database="garc";
+    
+    
 
     @GET
-    @Path("verificar")
-    public String listar(@QueryParam("nom") String nom) {
-
+    @Path("verificarTrabajoPasante")
+    public String listar(@QueryParam("resumen") String resumen) {
+        
         Connection con = null;
         Statement stat = null;
 
@@ -50,15 +56,11 @@ public class Investigador {
             Logger.getLogger(Personas.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/datos",
-                    "root", "root");
-
-            
-            
+            con = DriverManager.getConnection("jdbc:mysql://localhost/"+database,
+                    user, pass);
             PreparedStatement psSelectConClave = con
                     .prepareStatement("select * from persona where nombre=?");
-
-            psSelectConClave.setString(1, nom);
+            psSelectConClave.setString(1, resumen);
             ResultSet rs = psSelectConClave.executeQuery();
             while (rs.next()) {
                 menssage += rs.getString(2);
@@ -73,48 +75,46 @@ public class Investigador {
         return menssage;
 
     }
+    
+    @GET
+    @Path("determinarObjetivo")
+    
+    public void objetivo(@QueryParam("objetivo") String objetivo,@QueryParam("investigador") String id_investigador,@QueryParam("director") String id_director) {
+        
+        Connection con = null;
+        Statement stat = null;
 
-    
-    
+        String menssage = "";
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Personas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost/"+database,
+                    user, pass);
+           
+            
+            String query = "insert into proyecto (nombre,apellido) values (?,?)";
+
+            PreparedStatement preparedStmt = con.prepareStatement(query);
+            preparedStmt.setString(1, nom);
+            preparedStmt.setString(2, ape);
+
+            preparedStmt.execute();
+
+            con.close();
+            
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(Personas.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
-    @GET
-    @Path("obtenerResumenPalabrasClaves")
-    public String listar(@QueryParam("nom") String nom) {
-
-        Connection con = null;
-        Statement stat = null;
-
-        String menssage = "";
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Personas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost/datos",
-                    "root", "root");
-
-            
-            
-            PreparedStatement psSelectConClave = con
-                    .prepareStatement("select * from persona where nombre=?");
-
-            psSelectConClave.setString(1, nom);
-            ResultSet rs = psSelectConClave.executeQuery();
-            while (rs.next()) {
-                menssage += rs.getString(2);
-
-            }
-            con.close();
-
-        } catch (SQLException ex) {
-
-            Logger.getLogger(Personas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return menssage;
 
     }
-
+    
+    
     
     
 }
