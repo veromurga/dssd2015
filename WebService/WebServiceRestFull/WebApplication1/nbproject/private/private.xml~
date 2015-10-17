@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
- 
+<<<<<<< HEAD
             <file>file:/home/dssd/Escritorio/Git/dssd2015/WebService/WebServiceRestFull/WebApplication1/src/java/domains/Personas.java</file>
             <file>file:/home/dssd/Escritorio/Git/dssd2015/WebService/WebServiceRestFull/WebApplication1/src/java/domains/Multiplicacion.java</file>
             <file>file:/home/dssd/Escritorio/Git/dssd2015/WebService/WebServiceRestFull/WebApplication1/src/java/domains/RestConf.java</file>
- 
+=======
+            <file>file:/C:/Users/jorge/GITS/dssd2015/WebService/WebServiceRestFull/WebApplication1/src/java/domains/Personas.java</file>
+            <file>file:/C:/Users/jorge/GITS/dssd2015/WebService/WebServiceRestFull/WebApplication1/src/java/domains/Investigador.java</file>
+>>>>>>> 99933339b22117dda26276aac946fe02e3a4e6be
         </group>
     </open-files>
 </project-private>
