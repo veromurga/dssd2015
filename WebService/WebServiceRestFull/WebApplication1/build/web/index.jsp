@@ -44,9 +44,13 @@
 
         <h1>Insertar</h1>
 
-        <form  action="app/personas/insertar"  >
-            <input type="text" name="nom">
-            <input type="text" name="ape">
+        <form  method="post" action="app/revistas/articulo/agregar"  >
+         
+            <input type="text" name="resumen">
+            <input type="text" name="nombre_resumen">
+            <input type="text" name="estado">
+            <input type="text" name="id_revista">
+    
             <input type="submit" value="Insertar">
         </form>
 

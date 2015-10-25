@@ -154,17 +154,78 @@ public class AgenteExterno {
 
     }
 
+    @GET
+    @Path("buscarClaves")
+    public String buscarPorPalabrasClaves(@QueryParam("palabras") String palabras) throws SQLException, ClassNotFoundException {
+
+        return "";
+
+    }
+
     @POST
     @Path("agregar")
     public void agregar(@FormParam("nombre") String nombre) throws SQLException, ClassNotFoundException {
 
         Connection con = utils.Constants.OpenConnection();
 
-            //Revista
+        //Revista
         PreparedStatement preparedStmt = con.prepareStatement(utils.Constants.query_revista_nueva);
         preparedStmt.setString(1, nombre);
 
         preparedStmt.execute();
+    }
+
+    @POST
+    @Path("/articulo/agregar")
+    public void agregarArticulo(@FormParam("resumen") String resumen,
+            @FormParam("nombre_resumen") String nombre_resumen,
+            @FormParam("estado") String estado,
+            @FormParam("id_revista") String id_revista,
+            @FormParam("palabras") String palabras_claves) throws SQLException, ClassNotFoundException {
+
+        Connection con = utils.Constants.OpenConnection();
+
+        //Articulo
+        PreparedStatement prepared_articulo = con.prepareStatement(utils.Constants.query_articulo_nuevo);
+        prepared_articulo.setString(1, resumen);
+        prepared_articulo.setString(2, nombre_resumen);
+        prepared_articulo.setString(3, estado);
+        prepared_articulo.setInt(4, Integer.parseInt(id_revista));
+        prepared_articulo.execute();
+
+        //Buscar Articulo
+        ResultSet buscar_articulo_result = null;
+        Integer id_articulo = null;
+
+        try {
+
+            PreparedStatement articuloQuery = con
+                    .prepareStatement(utils.Constants.query_articulo_buscar);
+
+            articuloQuery.setString(1, nombre_resumen);
+
+            buscar_articulo_result = articuloQuery.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AgenteExterno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+
+            while (buscar_articulo_result.next()) {
+                id_articulo = buscar_articulo_result.getInt("id_articulo");
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AgenteExterno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //Revista_Articulo
+        PreparedStatement preparedRevista_Articulo = con.prepareStatement(utils.Constants.query_revista_articulo_nuevo);
+        preparedRevista_Articulo.setInt(1, Integer.parseInt(id_revista));
+        preparedRevista_Articulo.setInt(2, id_articulo);
+
+        preparedRevista_Articulo.execute();
 
     }
 
