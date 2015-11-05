@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actormapping:actorMappings xmlns:actormapping="http://www.bonitasoft.org/ns/actormapping/6.0">
+  <actorMapping name="Director">
+    <users>
+      <user>director</user>
+    </users>
+    <groups>
+      <group>/Director</group>
+    </groups>
+    <roles>
+      <role>Director</role>
+    </roles>
+    <memberships/>
+  </actorMapping>
+  <actorMapping name="Investigador">
+    <users>
+      <user>investigador</user>
+    </users>
+    <groups>
+      <group>/Investigador</group>
+    </groups>
+    <roles>
+      <role>Investigador</role>
+    </roles>
+    <memberships/>
+  </actorMapping>
+  <actorMapping name="Pasantes">
+    <users>
+      <user>pasante1</user>
+    </users>
+    <groups>
+      <group>/Pasante</group>
+    </groups>
+    <roles>
+      <role>Pasante</role>
+    </roles>
+    <memberships/>
+  </actorMapping>
+  <actorMapping name="Revisor">
+    <users>
+      <user>revisor1</user>
+    </users>
+    <groups>
+      <group>/Revisor</group>
+    </groups>
+    <roles>
+      <role>Investigador</role>
+    </roles>
+    <memberships/>
+  </actorMapping>
+</actormapping:actorMappings>
