@@ -1,0 +1,95 @@
+//LISTAR SOLO GRUPOS
+
+
+import org.bonitasoft.engine.identity.GroupCriterion;
+import org.bonitasoft.engine.identity.Group;
+import org.bonitasoft.engine.identity.User;
+import org.bonitasoft.engine.identity.UserCriterion;
+ 
+
+
+List<User> users = apiAccessor.getIdentityAPI().getUsers(0, 10000, UserCriterion.FIRST_NAME_ASC);
+
+List<Group> groups=apiAccessor.getIdentityAPI().getGroups(0,10000,GroupCriterion.NAME_ASC);
+
+List<String> list = new ArrayList<String>();
+
+
+for(Group group:groups){
+	list.add(group.getName());
+	
+}
+ 
+ return list;
+ 
+//LISTAR TODOS LOS USUARIOS
+
+
+
+import org.bonitasoft.engine.identity.User;
+import org.bonitasoft.engine.identity.UserCriterion;
+ 
+
+
+List<User> users = apiAccessor.getIdentityAPI().getUsers(0, 10000, UserCriterion.FIRST_NAME_ASC);
+ 
+List<String> list = new ArrayList<String>();
+ 
+for (int i=0; i<users.size(); i++){
+	
+	list.add(users.get(i).getUserName());
+}
+return list;
+ 
+ 
+ 
+ 
+ //LISTAR USUARIOS DE LOS GRUPOS EN PARTICULAR
+ 
+ 
+ Group groupSelected=apiAccessor.getIdentityAPI().getGroupByPath("/acme/hr");<br />
+ List<User> usersInGroup=apiAccessor.getIdentityAPI().getUsersInGroup(groupSelected.getId(), 0, 100, UserCriterion.FIRST_NAME_ASC);<br />
+  StringBuilder sb=new StringBuilder();<br />
+ for (User user:usersInGroup){<br />
+       //get professional contact data<br />
+       ContactData contactData = apiAccessor.getIdentityAPI().getUserContactData(user.getId(), false);<br />
+        if (contactData!=null && contactData.getEmail()!=null && !contactData.getEmail().isEmpty()){<br />
+           sb.append(contactData.getEmail()).append(",");<br />
+       }<br />
+  }<br />
+  return sb.toString();
+  
+  
+  
+  
+  
+  
+  //Conector Rest Groovy
+  
+  import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+ 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+ 
+
+//URL url = new URL("http://localhost:8080/WebServiceRestFullGlashFish/app/personas/listar?");
+
+URL url = new URL("http://localhost:8080/WebService/app/personas/buscar?nom="+nombre);
+
+String user = url.getText();
+ 
+ 
+return user;
+  
+  
+  
+  
+  
+  
+  
+  
+  
