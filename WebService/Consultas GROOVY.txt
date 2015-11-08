@@ -87,9 +87,63 @@ return user;
   
   
   
+
+  
+  
+  //JSON
+  
+  
+  import groovy.json.JsonSlurper;
+URL url = new URL("http://localhost/dssdproject/afip.php?cuit=" + cuit)
+String content = url.getText();
+JsonSlurper jsonSlurper = new JsonSlurper();
+def object = jsonSlurper.parseText(content);
+return object;
   
   
   
+  //Filtros
+  
+  
+  Hola, la idea es usar un filtro de usuario pero simple. En la tarea realizar experimento (que es la que querés asignar), en la solapa de actores definí un filtro simple donde retornes el grupo que acabás de crear en Bonita dentro de un script grrovy.
+
+Fijate que al crear el filtro, en la tercera ventana te vas a encontrar con una ventana que dice "Id de Usuario" y ahí podés poner un script. 
+
+El script tuyo debería retornar algo así
+
+return apiAccessor.getIdentityAPI().getUserByUserName(actor).getId();
+
+Pero en vez de getUserByUserName tendrías que usar un método tipo getGroup o getGroupByPath
+
+Acá te paso la URL con la documentación de la API de groups, saludos
+
+http://documentation.bonitasoft.com/javadoc/api/6.0/sp/common/org/bonitasoft/engine/api/GroupAPI.html
+
+
+
+
+
+
+
+//Asignar tarea a un usuario
+
+Para asignar la tarea a un usuario específico el código sería similar al siguiente
+
+User u = apiAccessor.getIdentityAPI().getUserByUserName("UPasante2");
+
+apiAccessor.getProcessAPI().assignUserTask(activityInstanceId,u.getId());
+
+Saludos
+  
+  
+  
+  
+  
+//
+Admin:vero-pedro
+Investigadores:carla90
+Pasantes:juan90,LucasD
+Revisor:jfarfan
   
   
   
