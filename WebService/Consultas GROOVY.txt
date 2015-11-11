@@ -93,8 +93,8 @@ return user;
   //JSON
   
   
-  import groovy.json.JsonSlurper;
-URL url = new URL("http://localhost/dssdproject/afip.php?cuit=" + cuit)
+ import groovy.json.JsonSlurper;
+URL url = new URL("http://localhost/dds/servicio1?dato=" + dato)
 String content = url.getText();
 JsonSlurper jsonSlurper = new JsonSlurper();
 def object = jsonSlurper.parseText(content);
@@ -121,10 +121,6 @@ http://documentation.bonitasoft.com/javadoc/api/6.0/sp/common/org/bonitasoft/eng
 
 
 
-
-
-
-
 //Asignar tarea a un usuario
 
 Para asignar la tarea a un usuario específico el código sería similar al siguiente
@@ -136,7 +132,13 @@ apiAccessor.getProcessAPI().assignUserTask(activityInstanceId,u.getId());
 Saludos
   
   
-  
+//LISTAR TAREAS 
+
+
+HashSet tasks = apiAccessor.getQueryRuntimeAPI().getTaskList(user,ActivityState.READY)
+
+
+If you want to find task that have already been done, you should use ActivityState.FINISHED value.
   
   
 //
