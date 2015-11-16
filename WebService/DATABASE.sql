@@ -63,6 +63,37 @@ CREATE TABLE `palabra_clave` (
 
 insert  into `palabra_clave`(`id`,`descripcion`,`palabra_clave`) values (1,'Guerra','key_war'),(2,'Futbol','key_futbol'),(3,'Basquet','key_basquet'),(4,'Noticias locales','key_local_noticia');
 
+/*Table structure for table `revisor` */
+
+DROP TABLE IF EXISTS `revisor`;
+
+CREATE TABLE `revisor` (
+  `id` int(90) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(60) DEFAULT NULL,
+  `username` varchar(80) DEFAULT NULL,
+  `apellido` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `revisor` */
+
+insert  into `revisor`(`id`,`nombre`,`username`,`apellido`) values (1,'Juancho','revisor1','Fernandez'),(2,'ALan','revisor2','Rosales');
+
+/*Table structure for table `revisor_respuesta` */
+
+DROP TABLE IF EXISTS `revisor_respuesta`;
+
+CREATE TABLE `revisor_respuesta` (
+  `id` int(90) NOT NULL AUTO_INCREMENT,
+  `username_revisor` varchar(99) DEFAULT NULL,
+  `mensaje` varchar(90) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `revisor_respuesta` */
+
+insert  into `revisor_respuesta`(`id`,`username_revisor`,`mensaje`) values (1,'revisor1','\"esto es un mensaje\"'),(2,'revisor2','\"Esto es otro mensaje de respuesta\"');
+
 /*Table structure for table `revista` */
 
 DROP TABLE IF EXISTS `revista`;

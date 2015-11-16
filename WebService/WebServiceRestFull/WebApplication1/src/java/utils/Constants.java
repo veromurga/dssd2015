@@ -22,7 +22,7 @@ public class Constants {
     public static String user = "root";
     public static String pass = "";
 
-    public static String query_revisores="SELECT r.id AS id,r.nombre AS nombre,r.username AS username FROM revisor AS r";
+    public static String query_revisores="SELECT r.id AS id,r.mensaje AS mensaje,r.username AS username FROM revisor_respuesta AS r";
     
     public static String query_articulo_buscar="SELECT a.id AS id_articulo FROM articulo AS a WHERE a.nombre_resumen=?";
 

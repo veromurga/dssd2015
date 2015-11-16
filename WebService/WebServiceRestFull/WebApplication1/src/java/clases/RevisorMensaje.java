@@ -9,17 +9,19 @@ package clases;
  *
  * @author jorge
  */
-public class UserRevisor {
+public class RevisorMensaje {
 
     private int id;
     private String username;
+    private String mensaje;
 
-    public UserRevisor(int aInt, String string) {
-        this.id = aInt;
-        this.username = string;
+    public RevisorMensaje(int id, String username, String mensaje) {
+        this.id = id;
+        this.username = username;
+        this.mensaje = mensaje;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -34,5 +36,16 @@ public class UserRevisor {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+    
+    
+ 
 
 }

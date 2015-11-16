@@ -1,7 +1,7 @@
 package domains;
- 
+
 import clases.*;
-import clases.UserRevisor;
+import clases.RevisorMensaje;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.FormParam;
 import utils.Constants.*;
- 
- 
 
 /**
  *
@@ -31,13 +29,12 @@ import utils.Constants.*;
  */
 @Path("revisor")
 public class Revisor {
- 
 
     @GET
-    @Path("listar")
+    @Path("listarMensjes")
     public String listar() throws SQLException, ClassNotFoundException {
 
-        ArrayList<UserRevisor> revisores = new ArrayList<>();
+        ArrayList<RevisorMensaje> revisores = new ArrayList<>();
 
         Connection con = utils.Constants.OpenConnection();
         Statement query = con.createStatement();
@@ -48,23 +45,23 @@ public class Revisor {
             revisor_query = query.executeQuery(utils.Constants.query_revisores);
 
         } catch (SQLException ex) {
-            
+
         }
         try {
 
             while (revisor_query.next()) {
-                UserRevisor r = null;
+                RevisorMensaje r = null;
                 try {
 
-                    r = new UserRevisor(revisor_query.getInt("id"), revisor_query.getString("username"));
+                    r = new RevisorMensaje(revisor_query.getInt("id"), revisor_query.getString("mensaje"), revisor_query.getString("username"));
                 } catch (SQLException ex) {
-               
+
                 }
                 revisores.add(r);
             }
 
         } catch (SQLException ex) {
-            
+
         }
 
         Gson response = new Gson();
