@@ -1,7 +1,7 @@
 package domains;
 
 import clases.*;
-import clases.RevisorMensaje;
+import clases.PasanteMensaje;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,7 +34,7 @@ public class Revisor {
     @Path("listarMensjes")
     public String listar() throws SQLException, ClassNotFoundException {
 
-        ArrayList<RevisorMensaje> revisores = new ArrayList<>();
+        ArrayList<PasanteMensaje> revisores = new ArrayList<>();
 
         Connection con = utils.Constants.OpenConnection();
         Statement query = con.createStatement();
@@ -50,10 +50,10 @@ public class Revisor {
         try {
 
             while (revisor_query.next()) {
-                RevisorMensaje r = null;
+                PasanteMensaje r = null;
                 try {
 
-                    r = new RevisorMensaje(revisor_query.getInt("id"), revisor_query.getString("mensaje"), revisor_query.getString("username"));
+                    r = new PasanteMensaje(revisor_query.getInt("id"), revisor_query.getString("mensaje"), revisor_query.getString("username"));
                 } catch (SQLException ex) {
 
                 }

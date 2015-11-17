@@ -20,11 +20,18 @@ public class Constants {
 
     public static String database = "garc";
     public static String user = "root";
-    public static String pass = "";
+    public static String pass = "root";
 
-    public static String query_revisores="SELECT r.id AS id,r.mensaje AS mensaje,r.username AS username FROM revisor_respuesta AS r";
+    public static String query_revisores = "SELECT r.id AS id,r.mensaje AS mensaje,r.username AS username FROM revisor_respuesta AS r";
+
+    public static String query_mensaje_pasantes = "SELECT p.id AS id,p.mensaje AS mensaje,p.username_pasante AS username FROM pasante_respuesta AS p";
+    public static String query_mensaje_pasante =  "SELECT p.id AS id,p.username_pasante AS username,p.mensaje AS mensaje FROM pasante_respuesta AS p WHERE p.username_pasante=? AND p.nombre_proyecto=?";
+    public static String query_mensaje_pasante_nueva = "INSERT INTO pasante_respuesta (username_pasante,mensaje,nombre_proyecto) VALUES (?,?,?)";
     
-    public static String query_articulo_buscar="SELECT a.id AS id_articulo FROM articulo AS a WHERE a.nombre_resumen=?";
+    
+ 
+    
+    public static String query_articulo_buscar = "SELECT a.id AS id_articulo FROM articulo AS a WHERE a.nombre_resumen=?";
 
     public static String query_revista_articulo_nuevo = "INSERT INTO revista_articulo (id_revista,id_articulo) VALUES (?,?)";
 

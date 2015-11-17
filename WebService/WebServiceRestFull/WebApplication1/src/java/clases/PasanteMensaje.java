@@ -9,13 +9,13 @@ package clases;
  *
  * @author jorge
  */
-public class RevisorMensaje {
+public class PasanteMensaje {
 
     private int id;
     private String username;
     private String mensaje;
 
-    public RevisorMensaje(int id, String username, String mensaje) {
+    public PasanteMensaje(int id, String username, String mensaje) {
         this.id = id;
         this.username = username;
         this.mensaje = mensaje;
