@@ -25,12 +25,9 @@ public class Constants {
     public static String query_revisores = "SELECT r.id AS id,r.mensaje AS mensaje,r.username AS username FROM revisor_respuesta AS r";
 
     public static String query_mensaje_pasantes = "SELECT p.id AS id,p.mensaje AS mensaje,p.username_pasante AS username FROM pasante_respuesta AS p";
-    public static String query_mensaje_pasante =  "SELECT p.id AS id,p.username_pasante AS username,p.mensaje AS mensaje FROM pasante_respuesta AS p WHERE p.username_pasante=? AND p.nombre_proyecto=?";
+    public static String query_mensaje_pasante = "SELECT p.id AS id,p.username_pasante AS username,p.mensaje AS mensaje FROM pasante_respuesta AS p WHERE p.username_pasante=? AND p.nombre_proyecto=?";
     public static String query_mensaje_pasante_nueva = "INSERT INTO pasante_respuesta (username_pasante,mensaje,nombre_proyecto) VALUES (?,?,?)";
-    
-    
- 
-    
+
     public static String query_articulo_buscar = "SELECT a.id AS id_articulo FROM articulo AS a WHERE a.nombre_resumen=?";
 
     public static String query_revista_articulo_nuevo = "INSERT INTO revista_articulo (id_revista,id_articulo) VALUES (?,?)";
@@ -39,8 +36,24 @@ public class Constants {
 
     public static String query_revista_nueva = "INSERT INTO revista (nombre) VALUES (?)";
 
-    public static String query_palabras_de_revista = "SELECT  pc.id AS id_palabra_clave,pc.descripcion AS descripcion, pc.palabra_clave AS key_valor FROM Revista AS r INNER JOIN revista_palabra_clave AS rpc  INNER JOIN palabra_clave AS pc ON r.id=rpc.id_revista WHERE r.id=? AND pc.id=rpc.id_palabra_clave";
+    
+    
+    
+    
+    
+    
+    public static String query_palabras_de_revista = "SELECT  r.nombre AS nombre_revista,r.id AS id_revista,pc.id AS id_palabra_clave,pc.descripcion AS descripcion, pc.palabra_clave AS key_valor \n"
+            + "FROM Revista AS r \n"
+            + "INNER JOIN revista_palabra_clave AS rpc   \n"
+            + "INNER JOIN palabra_clave AS pc ON  pc.id=rpc.id_palabra_clave \n"
+            + "WHERE pc.palabra_clave=? AND r.id=rpc.id_revista";
 
+    
+    
+    
+    
+    
+    
     public static String query_articulos_de_revista = "SELECT a.id AS id_articulo, a.resumen AS resumen , a.nombre_resumen AS nombre_resumen, a.estado AS estado FROM articulo AS a WHERE a.id_revista=?";
 
     public static String query_revista = "SELECT r.id AS id_revista , r.nombre AS nombre_revista FROM revista AS r WHERE r.id=?";

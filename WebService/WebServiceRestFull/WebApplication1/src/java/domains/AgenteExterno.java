@@ -156,8 +156,58 @@ public class AgenteExterno {
     @GET
     @Path("buscarClaves")
     public String buscarPorPalabrasClaves(@QueryParam("palabras") String palabras) throws SQLException, ClassNotFoundException {
+        ArrayList<Revista> revistas = new ArrayList<>();
+        ArrayList<Palabra> revista_palabras = new ArrayList<Palabra>();
+        ArrayList<Articulo> revista_articulos = new ArrayList<Articulo>();
 
-        return "";
+        Connection con = utils.Constants.OpenConnection();
+        Statement query = con.createStatement();
+        String[] claves = palabras.split(",");
+
+        for (String clave : claves) {
+
+            ResultSet revistas_result = null;
+
+            try {
+                //Obtengo una revista por palabra clave que me pasaron
+                PreparedStatement revistasQuery = con
+                        .prepareStatement(utils.Constants.query_palabras_de_revista);
+
+                revistasQuery.setString(1, clave);
+
+                revistas_result = revistasQuery.executeQuery();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(AgenteExterno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+
+                Revista r = null;
+
+                while (revistas_result.next()) {
+
+                    try {
+
+                        r = new Revista(revistas_result.getInt("id_revista"), revistas_result.getString("nombre_revista"));
+                       // Palabra p = new Palabra(revistas_result.getInt("id_palabra_clave"), revistas_result.getString("descripcion"),
+                        //       revistas_result.getString("key_valor"));
+                        //   palabras.add(p);
+                         revistas.add(r);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AgenteExterno.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(AgenteExterno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        Gson response = new Gson();
+
+        return response.toJson(revistas);
 
     }
 

@@ -58,42 +58,7 @@ public class Pasante {
         return response.toJson(revisores);
     }
     
-    
-    
-     @GET
-    @Path("buscar_mensajes_proyecto")
-    public String buscar(@QueryParam("proyecto") String proyecto) throws SQLException, ClassNotFoundException {
-        ArrayList<PasanteMensaje> mensajes = new ArrayList<>();
-        Connection con = utils.Constants.OpenConnection();
-        ResultSet mensajes_result = null;
-        try {
-            //Los mensajes de un pasante en particular
-            PreparedStatement mensajeQuery = con
-                    .prepareStatement(utils.Constants.query_mensaje_pasante);
-           // mensajeQuery.setString(1, username);
-         
-            mensajes_result = mensajeQuery.executeQuery();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Pasante.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        PasanteMensaje p = null;
-        try {
-            while (mensajes_result.next()) {
-                try {
-                    p = new PasanteMensaje(mensajes_result.getInt("id"), mensajes_result.getString("username"), mensajes_result.getString("mensaje"));
-                    mensajes.add(p);
-                } catch (SQLException ex) {
-                    Logger.getLogger(PasanteMensaje.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AgenteExterno.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Gson response = new Gson();
-        return response.toJson(mensajes);
-    }
-
+ 
     @GET
     @Path("buscar_mensaje")
     public String buscar(@QueryParam("username") String username, @QueryParam("name_project") String project_name) throws SQLException, ClassNotFoundException {
@@ -127,20 +92,5 @@ public class Pasante {
         Gson response = new Gson();
         return response.toJson(mensajes);
     }
-/*
-    @POST
-    @Path("agregar")
-    public void agregar(@PathParam("nombre_pasante") String nombre_pasante,@PathParam("resultado_mensaje") String resultado, @PathParam("nombre_proyecto") String nombre_proyecto) throws SQLException, ClassNotFoundException {
-
-        Connection con = utils.Constants.OpenConnection();
-
-        //Nuevo mensaje revista
-        PreparedStatement preparedStmt = con.prepareStatement(utils.Constants.query_mensaje_pasante_nueva);
-        preparedStmt.setString(1, nombre_pasante);
-        preparedStmt.setString(2, resultado);
-        preparedStmt.setString(3, nombre_proyecto);
-    
-        preparedStmt.execute();
-    }
-*/
+ 
 }
