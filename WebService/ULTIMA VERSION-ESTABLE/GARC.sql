@@ -75,7 +75,7 @@ CREATE TABLE `pasante_respuesta` (
   `mensaje` varchar(90) DEFAULT NULL,
   `nombre_proyecto` varchar(89) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `pasante_respuesta` */
 
@@ -90,7 +90,7 @@ CREATE TABLE `revista` (
   `nombre` varchar(60) DEFAULT NULL,
   `puede_publicar` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `revista` */
 

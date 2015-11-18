@@ -1,0 +1,7 @@
+-ABRIR PROYECTO DESDE NET
+-Correr Glashfish
+-Run al proyecto
+
+Importar GARC.sql que es la base de datos actual
+
+Y listos :)
