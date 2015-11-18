@@ -47,6 +47,10 @@ public class Constants {
             + "INNER JOIN palabra_clave AS pc ON  pc.id=rpc.id_palabra_clave \n"
             + "WHERE pc.palabra_clave=? AND r.id=rpc.id_revista";
 
+    public static String query_revista_nombre = "SELECT  r.nombre AS nombre_revista,r.id AS id_revista \n"
+            + "FROM Revista AS r \n"
+            + "WHERE r.nombre=? ";
+
     public static String query_articulos_de_revista = "SELECT a.id AS id_articulo, a.resumen AS resumen , a.nombre_resumen AS nombre_resumen, a.estado AS estado FROM articulo AS a WHERE a.id_revista=?";
 
     public static String query_revista = "SELECT r.id AS id_revista , r.nombre AS nombre_revista FROM revista AS r WHERE r.id=?";
